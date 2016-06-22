@@ -1,0 +1,10 @@
+---
+# handlers file for telegraf
+
+- name: restart telegraf
+  become: yes
+  service:
+    name: "{{ telegraf_service_name }}"
+    state: restarted
+  tags:
+    - telegraf

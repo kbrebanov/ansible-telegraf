@@ -1,0 +1,29 @@
+---
+# tasks file for telegraf (Ubuntu specific)
+
+- name: Download InfluxDB GPG key
+  become: yes
+  apt_key:
+    url: https://repos.influxdata.com/influxdb.key
+    state: present
+  tags:
+    - telegraf
+
+- name: Configure InfluxDB APT repository
+  become: yes
+  apt_repository:
+    repo: 'deb https://repos.influxdata.com/ubuntu {{ ansible_distribution_release }} stable'
+    state: present
+  tags:
+    - telegraf
+
+- name: Install Telegraf packages
+  become: yes
+  apt:
+    name: "{{ item }}"
+    update_cache: yes
+    state: present
+  with_items:
+    - "{{ telegraf_packages }}"
+  tags:
+    - telegraf

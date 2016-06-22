@@ -1,0 +1,5 @@
+---
+# vars file for telegraf (Ubuntu specific)
+
+telegraf_packages:
+  - telegraf={{ telegraf_version }}*

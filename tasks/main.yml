@@ -1,0 +1,34 @@
+---
+# tasks file for telegraf
+
+- name: Include distribution specific variables
+  include_vars: "{{ ansible_distribution }}.yml"
+  tags:
+    - telegraf
+
+- include: Ubuntu.yml
+  when: ansible_distribution == "Ubuntu"
+  tags:
+    - telegraf
+
+- name: Create Telegraf configuration file
+  become: yes
+  template:
+    src: telegraf.conf.j2
+    dest: /etc/telegraf/telegraf.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - restart telegraf
+  tags:
+    - telegraf
+
+- name: Ensure Telegraf service is started and enabled on boot
+  become: yes
+  service:
+    name: "{{ telegraf_service_name }}"
+    state: started
+    enabled: yes
+  tags:
+    - telegraf

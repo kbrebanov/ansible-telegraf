@@ -1,0 +1,132 @@
+# {{ ansible_managed }}
+
+[global_tags]
+{% for key, value in telegraf_global_tags %}
+  {{ key }} = "{{ value }}"
+{% endfor %}
+
+[agent]
+  interval = "{{ telegraf_agent_interval }}"
+{% if telegraf_agent_round_interval %}
+  round_interval = true
+{% else %}
+  round_interval = false
+{% endif %}
+  metric_batch_size = {{ telegraf_agent_metric_batch_size }}
+  metric_buffer_limit = {{ telegraf_agent_metric_buffer_limit }}
+  collection_jitter = "{{ telegraf_agent_collection_jitter }}"
+  flush_interval = "{{ telegraf_agent_flush_interval }}"
+  flush_jitter = "{{ telegraf_agent_flush_jitter }}"
+{% if telegraf_agent_debug %}
+  debug = true
+{% else %}
+  debug = false
+{% endif %}
+{% if telegraf_agent_quiet %}
+  quiet = true
+{% else %}
+  quiet = false
+{% endif %}
+  hostname = "{{ telegraf_agent_hostname }}"
+{% if telegraf_agent_omit_hostname %}
+  omit_hostname = true
+{% else %}
+  omit_hostname = false
+{% endif %}
+
+{% if telegraf_output_influxdb_enabled %}
+[[outputs.influxdb]]
+  urls = ["{{ telegraf_output_influxdb_urls | join(', ') }}"]
+  database = "{{ telegraf_output_influxdb_database }}"
+  retention_policy = "{{ telegraf_output_influxdb_retention_policy }}"
+  precision = "{{ telegraf_output_influxdb_precision }}"
+  timeout = "{{ telegraf_output_influxdb_timeout }}"
+{% if telegraf_output_influxdb_username %}
+  username = "{{ telegraf_output_influxdb_username }}"
+{% endif %}
+{% if telegraf_output_influxdb_password %}
+  password = "{{ telegraf_output_influxdb_password }}"
+{% endif %}
+  user_agent = "{{ telegraf_output_influxdb_user_agent }}"
+  udp_payload = {{ telegraf_output_influxdb_udp_payload }}
+{% if telegraf_output_influxdb_ssl_ca %}
+  ssl_ca = "{{ telegraf_output_influxdb_ssl_ca }}"
+{% endif %}
+{% if telegraf_output_influxdb_ssl_cert %}
+  ssl_cert = "{{ telegraf_output_influxdb_ssl_cert }}"
+{% endif %}
+{% if telegraf_output_influxdb_ssl_key %}
+  ssl_key = "{{ telegraf_output_influxdb_ssl_key }}"
+{% endif %}
+{% if telegraf_output_influxdb_insecure_skip_verify %}
+  insecure_skip_verify = true
+{% else %}
+  insecure_skip_verify = false
+{% endif %}
+  write_consitency = "{{ telegraf_output_influxdb_write_consistency }}"
+{% endif %}
+
+{% if telegraf_output_file_enabled %}
+[[outputs.file]]
+  files = ["{{ telegraf_output_file_files | join(', ') }}"]
+  data_format = "{{ telegraf_output_file_data_format }}"
+{% endif %}
+
+{% if telegraf_input_cpu_enabled %}
+[[inputs.cpu]]
+{% if telegraf_input_cpu_percpu %}
+  percpu = true
+{% else %}
+  percpu = false
+{% endif %}
+{% if telegraf_input_cpu_totalcpu %}
+  totalcpu = true
+{% else %}
+  totalcpu = false
+{% endif %}
+{% if telegraf_input_cpu_fielddrop %}
+  fielddrop = ["{{ telegraf_input_cpu_fielddrop | join(', ') }}"]
+{% endif %}
+{% endif %}
+
+{% if telegraf_input_disk_enabled %}
+[[inputs.disk]]
+{% if telegraf_input_disk_mount_points %}
+  mount_points = ["{{ telegraf_input_disk_mount_points | join(', ') }}"]
+{% endif %}
+{% if telegraf_input_disk_ignore_fs %}
+  ignore_fs = ["{{ telegraf_input_disk_ignore_fs | join(', ') }}"]
+{% endif %}
+{% endif %}
+
+{% if telegraf_input_diskio_enabled %}
+[[inputs.diskio]]
+{% if telegraf_input_diskio_devices %}
+  devices = ["{{ telegraf_input_diskio_devices | join(', ') }}"]
+{% endif %}
+{% if telegraf_input_diskio_skip_serial_number %}
+  skip_serial_number = true
+{% else %}
+  skip_serial_number = false
+{% endif %}
+{% endif %}
+
+{% if telegraf_input_kernel_enabled %}
+[[inputs.kernel]]
+{% endif %}
+
+{% if telegraf_input_mem_enabled %}
+[[inputs.mem]]
+{% endif %}
+
+{% if telegraf_input_processes_enabled %}
+[[inputs.processes]]
+{% endif %}
+
+{% if telegraf_input_swap_enabled %}
+[[inputs.swap]]
+{% endif %}
+
+{% if telegraf_input_system_enabled %}
+[[inputs.system]]
+{% endif %}

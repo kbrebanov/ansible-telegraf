@@ -1,0 +1,67 @@
+---
+# defaults file for telegraf
+
+telegraf_version: 0.13
+
+telegraf_global_tags: {}
+
+telegraf_agent_interval: 10s
+telegraf_agent_round_interval: true
+telegraf_agent_metric_batch_size: 1000
+telegraf_agent_metric_buffer_limit: 10000
+telegraf_agent_collection_jitter: 0s
+telegraf_agent_flush_interval: 10s
+telegraf_agent_flush_jitter: 0s
+telegraf_agent_debug: false
+telegraf_agent_quiet: false
+telegraf_agent_hostname: ''
+telegraf_agent_omit_hostname: false
+
+telegraf_output_influxdb_enabled: false
+telegraf_output_influxdb_urls:
+  - http://localhost:8086
+telegraf_output_influxdb_database: telegraf
+telegraf_output_influxdb_retention_policy: default
+telegraf_output_influxdb_precision: s
+telegraf_output_influxdb_timeout: 5s
+telegraf_output_influxdb_username: ''
+telegraf_output_influxdb_password: ''
+telegraf_output_influxdb_user_agent: telegraf
+telegraf_output_influxdb_udp_payload: 512
+telegraf_output_influxdb_ssl_ca: ''
+telegraf_output_influxdb_ssl_cert: ''
+telegraf_output_influxdb_ssl_key: ''
+telegraf_output_influxdb_insecure_skip_verify: false
+telegraf_output_influxdb_write_consistency: any
+
+telegraf_output_file_enabled: true
+telegraf_output_file_files:
+  - stdout
+  - /tmp/metrics.out
+telegraf_output_file_data_format: influx
+
+telegraf_input_cpu_enabled: true
+telegraf_input_cpu_percpu: true
+telegraf_input_cpu_totalcpu: true
+telegraf_input_cpu_fielddrop:
+  - time_*
+
+telegraf_input_disk_enabled: true
+telegraf_input_disk_mount_points: []
+telegraf_input_disk_ignore_fs:
+  - tmpfs
+  - devtmpfs
+
+telegraf_input_diskio_enabled: true
+telegraf_input_diskio_devices: []
+telegraf_input_diskio_skip_serial_number: false
+
+telegraf_input_kernel_enabled: true
+
+telegraf_input_mem_enabled: true
+
+telegraf_input_processes_enabled: true
+
+telegraf_input_swap_enabled: true
+
+telegraf_input_system_enabled: true

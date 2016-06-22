@@ -1,0 +1,4 @@
+---
+# vars file for telegraf
+
+telegraf_service_name: telegraf
