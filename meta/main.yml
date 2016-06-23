@@ -12,5 +12,5 @@ galaxy_info:
         - trusty
         - xenial
   galaxy_tags:
-    - system
+    - monitoring
 dependencies: []
