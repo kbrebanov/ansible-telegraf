@@ -63,7 +63,7 @@
 {% else %}
   insecure_skip_verify = false
 {% endif %}
-  write_consitency = "{{ telegraf_output_influxdb_write_consistency }}"
+  write_consistency = "{{ telegraf_output_influxdb_write_consistency }}"
 {% endif %}
 
 {% if telegraf_output_file_enabled %}
