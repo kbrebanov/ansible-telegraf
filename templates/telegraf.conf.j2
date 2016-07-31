@@ -1,7 +1,7 @@
 # {{ ansible_managed }}
 
 [global_tags]
-{% for key, value in telegraf_global_tags %}
+{% for key, value in telegraf_global_tags.iteritems() %}
   {{ key }} = "{{ value }}"
 {% endfor %}
 
