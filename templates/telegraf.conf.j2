@@ -36,7 +36,17 @@
 
 {% if telegraf_output_influxdb_enabled %}
 [[outputs.influxdb]]
-  urls = ["{{ telegraf_output_influxdb_urls | join(', ') }}"]
+{% if telegraf_output_influxdb_urls %}
+    urls = [
+{% for url in telegraf_output_influxdb_urls %}
+{% if not loop.last %}
+      "{{ url }}",
+{% else %}
+      "{{ url }}"
+{% endif %}
+{% endfor %}
+    ]
+{% endif %}
   database = "{{ telegraf_output_influxdb_database }}"
   retention_policy = "{{ telegraf_output_influxdb_retention_policy }}"
   precision = "{{ telegraf_output_influxdb_precision }}"
@@ -68,7 +78,17 @@
 
 {% if telegraf_output_file_enabled %}
 [[outputs.file]]
-  files = ["{{ telegraf_output_file_files | join(', ') }}"]
+{% if telegraf_output_file_files %}
+  files = [
+{% for file in telegraf_output_file_files %}
+{% if not loop.last %}
+    "{{ file }}",
+{% else %}
+    "{{ file }}"
+{% endif %}
+{% endfor %}
+  ]
+{% endif %}
   data_format = "{{ telegraf_output_file_data_format }}"
 {% endif %}
 
@@ -85,24 +105,56 @@
   totalcpu = false
 {% endif %}
 {% if telegraf_input_cpu_fielddrop %}
-  fielddrop = ["{{ telegraf_input_cpu_fielddrop | join(', ') }}"]
+  fielddrop = [
+{% for fielddrop in telegraf_input_cpu_fielddrop %}
+{% if not loop.last %}
+    "{{ fielddrop }}",
+{% else %}
+    "{{ fielddrop }}"
+{% endif %}
+{% endfor %}
+  ]
 {% endif %}
 {% endif %}
 
 {% if telegraf_input_disk_enabled %}
 [[inputs.disk]]
 {% if telegraf_input_disk_mount_points %}
-  mount_points = ["{{ telegraf_input_disk_mount_points | join(', ') }}"]
+  mount_points = [
+{% for mount_point in telegraf_input_disk_mount_points %}
+{% if not loop.last %}
+    "{{ mount_point }}",
+{% else %}
+    "{{ mount_point }}"
+{% endif %}
+{% endfor %}
+  ]
 {% endif %}
 {% if telegraf_input_disk_ignore_fs %}
-  ignore_fs = ["{{ telegraf_input_disk_ignore_fs | join(', ') }}"]
+  ignore_fs = [
+{% for ignore_fs in telegraf_input_disk_ignore_fs %}
+{% if not loop.last %}
+    "{{ ignore_fs }}",
+{% else %}
+    "{{ ignore_fs }}"
+{% endif %}
+{% endfor %}
+  ]
 {% endif %}
 {% endif %}
 
 {% if telegraf_input_diskio_enabled %}
 [[inputs.diskio]]
 {% if telegraf_input_diskio_devices %}
-  devices = ["{{ telegraf_input_diskio_devices | join(', ') }}"]
+  devices = [
+{% for device in telegraf_input_diskio_devices %}
+{% if not loop.last %}
+    "{{ device }}",
+{% else %}
+    "{{ device }}"
+{% endif %}
+{% endfor %}
+  ]
 {% endif %}
 {% if telegraf_input_diskio_skip_serial_number %}
   skip_serial_number = true
