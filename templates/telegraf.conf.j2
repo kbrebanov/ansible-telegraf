@@ -171,6 +171,10 @@
 [[inputs.mem]]
 {% endif %}
 
+{% if telegraf_input_netstat_enabled %}
+[[inputs.netstat]]
+{% endif %}
+
 {% if telegraf_input_processes_enabled %}
 [[inputs.processes]]
 {% endif %}

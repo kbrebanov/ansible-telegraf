@@ -60,6 +60,8 @@ telegraf_input_kernel_enabled: true
 
 telegraf_input_mem_enabled: true
 
+telegraf_input_netstat_enabled: false
+
 telegraf_input_processes_enabled: true
 
 telegraf_input_swap_enabled: true
