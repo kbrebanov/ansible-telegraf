@@ -17,6 +17,7 @@
   collection_jitter = "{{ telegraf_agent_collection_jitter }}"
   flush_interval = "{{ telegraf_agent_flush_interval }}"
   flush_jitter = "{{ telegraf_agent_flush_jitter }}"
+  precision = "{{ telegraf_agent_precision }}"
 {% if telegraf_agent_debug %}
   debug = true
 {% else %}
@@ -49,7 +50,7 @@
 {% endif %}
   database = "{{ telegraf_output_influxdb_database }}"
   retention_policy = "{{ telegraf_output_influxdb_retention_policy }}"
-  precision = "{{ telegraf_output_influxdb_precision }}"
+  write_consistency = "{{ telegraf_output_influxdb_write_consistency }}"
   timeout = "{{ telegraf_output_influxdb_timeout }}"
 {% if telegraf_output_influxdb_username %}
   username = "{{ telegraf_output_influxdb_username }}"
@@ -73,7 +74,6 @@
 {% else %}
   insecure_skip_verify = false
 {% endif %}
-  write_consistency = "{{ telegraf_output_influxdb_write_consistency }}"
 {% endif %}
 
 {% if telegraf_output_file_enabled %}

@@ -1,7 +1,7 @@
 ---
 # defaults file for telegraf
 
-telegraf_version: 0.13
+telegraf_version: 1.0.0
 
 telegraf_global_tags: {}
 
@@ -12,6 +12,7 @@ telegraf_agent_metric_buffer_limit: 10000
 telegraf_agent_collection_jitter: 0s
 telegraf_agent_flush_interval: 10s
 telegraf_agent_flush_jitter: 0s
+telegraf_agent_precision: ''
 telegraf_agent_debug: false
 telegraf_agent_quiet: false
 telegraf_agent_hostname: ''
@@ -21,8 +22,8 @@ telegraf_output_influxdb_enabled: false
 telegraf_output_influxdb_urls:
   - http://localhost:8086
 telegraf_output_influxdb_database: telegraf
-telegraf_output_influxdb_retention_policy: default
-telegraf_output_influxdb_precision: s
+telegraf_output_influxdb_retention_policy: ''
+telegraf_output_influxdb_write_consistency: any
 telegraf_output_influxdb_timeout: 5s
 telegraf_output_influxdb_username: ''
 telegraf_output_influxdb_password: ''
@@ -32,7 +33,6 @@ telegraf_output_influxdb_ssl_ca: ''
 telegraf_output_influxdb_ssl_cert: ''
 telegraf_output_influxdb_ssl_key: ''
 telegraf_output_influxdb_insecure_skip_verify: false
-telegraf_output_influxdb_write_consistency: any
 
 telegraf_output_file_enabled: true
 telegraf_output_file_files:
