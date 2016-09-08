@@ -9,6 +9,14 @@
   tags:
     - telegraf
 
+- name: Ensure apt-transport-https is installed
+  become: yes
+  apt:
+    name: apt-transport-https
+    state: present
+  tags:
+    - telegraf
+
 - name: Configure InfluxDB APT repository
   become: yes
   apt_repository:
