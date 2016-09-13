@@ -38,15 +38,15 @@
 {% if telegraf_output_influxdb_enabled %}
 [[outputs.influxdb]]
 {% if telegraf_output_influxdb_urls %}
-    urls = [
+  urls = [
 {% for url in telegraf_output_influxdb_urls %}
 {% if not loop.last %}
-      "{{ url }}",
+    "{{ url }}",
 {% else %}
-      "{{ url }}"
+    "{{ url }}"
 {% endif %}
 {% endfor %}
-    ]
+  ]
 {% endif %}
   database = "{{ telegraf_output_influxdb_database }}"
   retention_policy = "{{ telegraf_output_influxdb_retention_policy }}"
