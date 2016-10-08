@@ -67,3 +67,5 @@ telegraf_input_processes_enabled: true
 telegraf_input_swap_enabled: true
 
 telegraf_input_system_enabled: true
+
+telegraf_input_net_enabled: false
