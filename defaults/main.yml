@@ -1,7 +1,7 @@
 ---
 # defaults file for telegraf
 
-telegraf_version: 1.0.0
+telegraf_version: 1.0.1
 
 telegraf_global_tags: {}
 
