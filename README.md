@@ -62,6 +62,8 @@ Role Variables
 | telegraf_input_processes_enabled              | true                           | Enable processes input                                                                                                                                                                                                                                                                 |
 | telegraf_input_swap_enabled                   | true                           | Enable swap input                                                                                                                                                                                                                                                                      |
 | telegraf_input_system_enabled                 | true                           | Enable system input                                                                                                                                                                                                                                                                    |
+| telegraf_input_net_enabled                    | false                          | Enable network input                                                                                                                                                                                                                                                                    |
+
 
 Dependencies
 ------------
